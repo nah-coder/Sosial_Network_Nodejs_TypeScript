@@ -13,3 +13,5 @@
 - npm init or yarn init
 - git init
 - git commit -m ""
+- git add \*
+-

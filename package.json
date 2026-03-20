@@ -4,5 +4,17 @@
   "description": "Sosial network",
   "main": "src/server.ts",
   "author": "Huy",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "server": "nodemon src/server.ts"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
 }
