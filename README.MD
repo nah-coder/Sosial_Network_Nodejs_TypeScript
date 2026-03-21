@@ -15,3 +15,10 @@
 - git commit -m ""
 - git add \*
 -
+
+## Reference
+http://expressjs.com/en/resources/middleware/morgan.html
+https://www.typescriptlang.org/tsconfig
+https://github.com/winstonjs/winston
+https://www.npmjs.com/package/bcryptjs
+https://www.npmjs.com/package/class-validator

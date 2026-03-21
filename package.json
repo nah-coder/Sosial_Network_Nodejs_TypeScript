@@ -9,16 +9,26 @@
     "server": "nodemon src/server.ts"
   },
   "dependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/hpp": "^0.2.7",
+    "@types/morgan": "^1.9.10",
+    "cors": "^2.8.6",
     "cross-env": "^10.1.0",
     "dotenv": "^17.3.1",
+    "envalid": "^8.1.1",
     "express": "^5.2.1",
-    "mongoose": "^9.3.1"
+    "helmet": "^8.1.0",
+    "hpp": "^0.2.3",
+    "mongoose": "^9.3.1",
+    "morgan": "^1.10.1",
+    "winston": "^3.19.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/mongoose": "^5.11.97",
     "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.9.3"
   }
 }
