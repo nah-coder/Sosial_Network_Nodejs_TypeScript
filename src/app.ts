@@ -21,13 +21,14 @@ class App{
         this.connectToDatabase();
         this.initializeMiddlewares();
         this.initializeRoutes(routes);
+        this.initializeErrorMiddleware();
     }
 
-    private initializeRoutes(routes:Route[]) {
-        routes.forEach(route => {
-            this.app.use(route.path, route.router);
-        }   
-    )};
+    private initializeRoutes(routes: Route[]) {
+        routes.forEach((route) => {
+        this.app.use('/', route.router);
+        });
+    }
 
     public listen() {
         this.app.listen(this.port, () => {
@@ -61,6 +62,10 @@ class App{
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(errorMiddleware);
     }
+    private initializeErrorMiddleware() {
+        this.app.use(errorMiddleware);
+    }
+
 }
 
 export default App;

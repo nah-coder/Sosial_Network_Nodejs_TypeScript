@@ -1,0 +1,96 @@
+import jwt from 'jsonwebtoken';
+import UserSchema from '@modules/users/users.model';
+
+import LoginDto from './auth.dto';
+import bcryptjs from 'bcryptjs';
+// import { DataStoredInToken, DataStoredInToken, TokenData } from './auth.interface';
+// import { isEmptyObject, randomTokenString, randomTokenString } from '@core/utils/helpers';
+import HttpException from '@core/interface/exceptions/http.exception';
+import IUser from '@modules/users/users.interface';
+import Logger from '@core/utils/logger';
+import { DataStoredInToken, TokenData } from './auth.interface';
+import { isEmptyObject } from '@core/utils/helpers';
+
+class AuthService {
+  public userSchema = UserSchema;
+
+  public async login(model: LoginDto): Promise<TokenData> {
+    if (isEmptyObject(model)) {
+      throw new HttpException(400, 'Model is empty');
+    }
+
+    const user = await this.userSchema.findOne({ email: model.email }).exec();
+    if (!user) {
+      throw new HttpException(409, `Your email ${model.email} is not exist.`);
+    }
+    const isMatchPassword = await bcryptjs.compare(model.password, user.password);
+    if (!isMatchPassword) throw new HttpException(400, 'Credential is not valid');
+
+    // const refreshToken = await this.generateRefreshToken(user._id);
+    // const jwtToken = generateJwtToken(user._id, refreshToken.token);
+
+    // // save refresh token
+    // await refreshToken.save();
+
+    // return jwtToken;
+    return this.createToken(user);
+  }
+
+//   public async refreshToken(token: string): Promise<TokenData> {
+//     const refreshToken = await this.getRefreshTokenFromDb(token);
+//     const { user } = refreshToken;
+
+//     // replace old refresh token with a new one and save
+//     const newRefreshToken = await this.generateRefreshToken(user);
+//     refreshToken.revoked = new Date(Date.now());
+//     refreshToken.replacedByToken = newRefreshToken.token;
+//     await refreshToken.save();
+//     await newRefreshToken.save();
+
+//     // return basic details and tokens
+//     return generateJwtToken(user, newRefreshToken.token);
+//   }
+
+//   public async revokeToken(token: string): Promise<void> {
+//     const refreshToken = await this.getRefreshTokenFromDb(token);
+
+//     // revoke token and save
+//     refreshToken.revoked = new Date(Date.now());
+//     await refreshToken.save();
+//   }
+
+//   public async getCurrentLoginUser(userId: string): Promise<IUser> {
+//     const user = await this.userSchema.findById(userId).exec();
+//     if (!user) {
+//       throw new HttpException(404, `User is not exists`);
+//     }
+//     return user;
+//   }
+
+//   private async getRefreshTokenFromDb(refreshToken: string) {
+//     const token = await RefreshTokenSchema.findOne({ token: refreshToken }).populate('user').exec();
+//     Logger.info(token);
+//     if (!token || !token.isActive) throw new HttpException(400, `Invalid refresh token`);
+//     return token;
+//   }
+
+//   private async generateRefreshToken(userId: string) {
+//     // create a refresh token that expires in 7 days
+//     return new RefreshTokenSchema({
+//       user: userId,
+//       token: randomTokenString(),
+//       expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // in 7 days
+//     });
+//   }
+
+  private createToken(user: IUser): TokenData  {
+          const dataInToken: DataStoredInToken = { id: user._id.toString() };
+          const secret: string = process.env.JWT_TOKEN_SECRET ?? '';
+          const expiresIn = 60; //in seconds
+          return {
+            token: jwt.sign(dataInToken, secret, { expiresIn: expiresIn }),
+            expiresIn: expiresIn,
+          };
+      }
+}
+export default AuthService;

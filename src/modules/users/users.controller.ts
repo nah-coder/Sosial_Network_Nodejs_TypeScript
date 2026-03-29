@@ -11,8 +11,8 @@ export default class UsersController {
     try {
       const model: RegisterDto = req.body;
       const tokenData: TokenData = await this.userService.createUser(model);
-      const io = req.app.get('socketio');
-      io.emit('user_created', `${model.email} has been registered`);
+      // const io = req.app.get('socketio');
+      // io.emit('user_created', `${model.email} has been registered`);
       res.status(201).json(tokenData);
     } catch (error) {
       next(error);

@@ -17,7 +17,7 @@ class UserService {
 
         const user = await this.userSchema.findOne({ email: model.email }).exec();
         if (user) {
-        throw new HttpException(409, `Your email ${model.email} already exist.`);
+            throw new HttpException(409, `Your email ${model.email} already exist.`);
         }
 
         const avatar = gravatar.url(model.email, {
