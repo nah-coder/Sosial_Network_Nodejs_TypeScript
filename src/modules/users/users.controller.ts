@@ -19,58 +19,58 @@ export default class UsersController {
     }
   };
 
-//   public getUserById = async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//       const user = await this.userService.getUserById(req.params.id);
-//       res.status(200).json(user);
-//     } catch (error) {
-//       next(error);
-//     }
-//   };
+  public getUserById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const user = await this.userService.getUserById(req.params.id as string);
+      res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
+  };
 
-//   public getAll = async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//       const users = await this.userService.getAll();
-//       res.status(200).json(users);
-//     } catch (error) {
-//       next(error);
-//     }
-//   };
+  public getAll = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const users = await this.userService.getAll();
+      res.status(200).json(users);
+    } catch (error) {
+      next(error);
+    }
+  };
 
-//   public getAllPaging = async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//       const page = Number(req.params.page);
-//       const keyword = req.query.keyword || '';
+  public getAllPaging = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const page = Number(req.params.page);
+      const keyword = req.query.keyword || '';
 
-//       const paginationResult = await this.userService.getAllPaging(keyword.toString(), page);
-//       res.status(200).json(paginationResult);
-//     } catch (error) {
-//       next(error);
-//     }
-//   };
+      const paginationResult = await this.userService.getAllPaging(keyword.toString(), page);
+      res.status(200).json(paginationResult);
+    } catch (error) {
+      next(error);
+    }
+  };
 
-//   public updateUser = async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//       const model: RegisterDto = req.body;
-//       const user = await this.userService.updateUser(req.params.id, model);
-//       const io = req.app.get('socketio');
-//       io.emit('user_updated', `User ${model.email} has been updated.`);
-//       res.status(200).json(user);
-//     } catch (error) {
-//       next(error);
-//     }
-//   };
+  public updateUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const model: RegisterDto = req.body;
+      const user = await this.userService.updateUser(req.params.id as string, model);
+      // const io = req.app.get('socketio');
+      // io.emit('user_updated', `User ${model.email} has been updated.`);
+      res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
+  };
 
-//   public deleteUser = async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//       const result = await this.userService.deleteUser(req.params.id);
-//       const io = req.app.get('socketio');
-//       io.emit('user_deleted', `User ${result.email} has been deleted.`);
-//       res.status(200).json(result);
-//     } catch (error) {
-//       next(error);
-//     }
-//   };
+  public deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const result = await this.userService.deleteUser(req.params.id as string);
+      // const io = req.app.get('socketio');
+      // io.emit('user_deleted', `User ${result.email} has been deleted.`);
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  };
 
 //   public deleteUsers = async (req: Request, res: Response, next: NextFunction) => {
 //     try {

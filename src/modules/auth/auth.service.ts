@@ -59,13 +59,13 @@ class AuthService {
 //     await refreshToken.save();
 //   }
 
-//   public async getCurrentLoginUser(userId: string): Promise<IUser> {
-//     const user = await this.userSchema.findById(userId).exec();
-//     if (!user) {
-//       throw new HttpException(404, `User is not exists`);
-//     }
-//     return user;
-//   }
+  public async getCurrentLoginUser(userId: string): Promise<IUser> {
+    const user = await this.userSchema.findById(userId).exec();
+    if (!user) {
+      throw new HttpException(404, `User is not exists`);
+    }
+    return user;
+  }
 
 //   private async getRefreshTokenFromDb(refreshToken: string) {
 //     const token = await RefreshTokenSchema.findOne({ token: refreshToken }).populate('user').exec();

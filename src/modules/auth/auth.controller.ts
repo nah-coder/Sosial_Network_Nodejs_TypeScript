@@ -37,12 +37,12 @@ export default class AuthController {
 //     }
 //   };
 
-//   public getCurrentLoginUser = async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//       const user = await this.authService.getCurrentLoginUser(req.user.id);
-//       res.status(200).json(user);
-//     } catch (error) {
-//       next(error);
-//     }
-//   };
+  public getCurrentLoginUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const user = await this.authService.getCurrentLoginUser(req.user.id);
+      res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
