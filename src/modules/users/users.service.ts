@@ -157,7 +157,7 @@ class UserService {
     private createToken(user: IUser): TokenData  {
         const dataInToken: DataStoredInToken = { id: user._id.toString() };
         const secret: string = process.env.JWT_TOKEN_SECRET ?? '';
-        const expiresIn = 60; //in seconds
+        const expiresIn = 6000000000000000000; //in seconds
         return {
           token: jwt.sign(dataInToken, secret, { expiresIn: expiresIn }),
           expiresIn: expiresIn,

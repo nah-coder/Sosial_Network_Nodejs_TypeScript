@@ -4,6 +4,7 @@ import { validateEnv } from './core/utils';
 import { IndexRoute } from './modules/index';
 import UsersRoute from '@modules/users/user.route';
 import AuthRoute from '@modules/auth/auth.route';
+import ProfileRoute from '@modules/profile/profile.route';
 
 validateEnv();
 
@@ -11,7 +12,7 @@ const routes = [
   new IndexRoute(),
   new UsersRoute(),
   new AuthRoute(),
-//   new ProfileRoute(),
+  new ProfileRoute(),
 //   new PostsRoute(),
 //   new GroupsRoute(),
 //   new ConversationsRoute(),
