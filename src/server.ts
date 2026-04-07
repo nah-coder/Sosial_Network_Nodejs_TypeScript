@@ -5,6 +5,7 @@ import { IndexRoute } from './modules/index';
 import UsersRoute from '@modules/users/user.route';
 import AuthRoute from '@modules/auth/auth.route';
 import ProfileRoute from '@modules/profile/profile.route';
+import PostsRoute from '@modules/posts/dtos/posts.route';
 
 validateEnv();
 
@@ -13,7 +14,7 @@ const routes = [
   new UsersRoute(),
   new AuthRoute(),
   new ProfileRoute(),
-//   new PostsRoute(),
+  new PostsRoute(),
 //   new GroupsRoute(),
 //   new ConversationsRoute(),
 ];
