@@ -63,35 +63,35 @@ class ProfileRoute implements Route {
       this.profileController.deleteEducation
     );
 
-    // this.router.post(
-    //   `${this.path}/following/:id`,
-    //   authMiddleware,
-    //   this.profileController.follow
-    // );
+    this.router.post(
+      `${this.path}/following/:id`,
+      authMiddleware,
+      this.profileController.follow
+    );
 
-    // this.router.delete(
-    //   `${this.path}/following/:id`,
-    //   authMiddleware,
-    //   this.profileController.unFollow
-    // );
+    this.router.delete(
+      `${this.path}/following/:id`,
+      authMiddleware,
+      this.profileController.unFollow
+    );
 
-    // this.router.post(
-    //   `${this.path}/friends/:id`,
-    //   authMiddleware,
-    //   this.profileController.addFriend
-    // );
+    this.router.post(
+      `${this.path}/friends/:id`,
+      authMiddleware,
+      this.profileController.addFriend
+    );
 
-    // this.router.delete(
-    //   `${this.path}/friends/:id`,
-    //   authMiddleware,
-    //   this.profileController.unFriend
-    // );
+    this.router.delete(
+      `${this.path}/friends/:id`,
+      authMiddleware,
+      this.profileController.unFriend
+    );
 
-    // this.router.put(
-    //   `${this.path}/friends/:id`,
-    //   authMiddleware,
-    //   this.profileController.acceptFriendRequest
-    // );
+    this.router.put(
+      `${this.path}/friends/:id`,
+      authMiddleware,
+      this.profileController.acceptFriendRequest
+    );
   }
 }
 
