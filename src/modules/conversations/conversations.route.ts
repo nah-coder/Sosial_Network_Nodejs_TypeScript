@@ -24,10 +24,10 @@ export default class ConversationsRoute implements Route {
       this.conversationController.sendMessage
     );
 
-    // this.router.get(
-    //   this.path,
-    //   authMiddleware,
-    //   this.conversationController.getMyConversation
-    // );
+    this.router.get(
+      this.path,
+      authMiddleware,
+      this.conversationController.getMyConversation
+    );
   }
 }
