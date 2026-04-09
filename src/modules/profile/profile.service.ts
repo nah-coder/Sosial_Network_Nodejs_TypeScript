@@ -14,8 +14,6 @@ import CreateProfileDto from './dtos/create_profile.dto';
 
 import AddEducationDto from './dtos/add_education.dto';
 import AddExperienceDto from './dtos/add_experience.dto';
-// import { HttpException } from '@core/exceptions';
-// import ProfileSchema from './profile.model';
 
 class ProfileService {
   public async getCurrentProfile(userId: string): Promise<Partial<IUser>> {
